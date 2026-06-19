@@ -1,4 +1,4 @@
-package net.glasslauncher.example.mixin;
+package orbital.orbitalradish.mixin;
 
 import net.minecraft.client.MinecraftApplet;
 import org.spongepowered.asm.mixin.Mixin;
