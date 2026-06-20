@@ -20,7 +20,8 @@
   "entrypoints": {
     "stationapi:event_bus": [
       "orbital.orbitalradish.events.init.InitListener",
-      "orbital.orbitalradish.events.init.ItemListener"
+      "orbital.orbitalradish.events.init.ItemListener",
+      "orbital.orbitalradish.events.init.BlockListener"
     ],
     "stationapi:event_bus_client": [
     ],
