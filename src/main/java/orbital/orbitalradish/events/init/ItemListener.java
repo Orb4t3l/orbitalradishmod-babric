@@ -6,19 +6,8 @@ import net.modificationstation.stationapi.api.event.registry.ItemRegistryEvent;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.template.item.TemplateItem;
 import net.modificationstation.stationapi.api.util.Namespace;
+import orbital.orbitalradish.item.RadishFoodItem;
 
-/**
- * Babric / StationAPI port of OrbitalRadish — item registration.
- *
- * NOTE on scope vs. the Forge 1.20.1 original:
- *  - No hunger/saturation system exists in Beta 1.7.3 (added in Beta 1.8). Food items
- *    there heal HP directly instead of using FoodProperties — the exact StationAPI class
- *    for this is still a TODO below rather than guessed at.
- *  - No advancements system exists in b1.7.3 at all (1.12+ feature) — not ported.
- *  - The radish crop block, compressed blocks/bricks/stairs/slab/wall, the radish stick
- *    bow, the custom arrow entity+renderer, and the villager/pig AI hooks are NOT in this
- *    pass — those are queued up as the next step.
- */
 public class ItemListener {
 
     @Entrypoint.Namespace
@@ -30,16 +19,14 @@ public class ItemListener {
 
     @EventListener
     public void registerItems(ItemRegistryEvent event) {
-        // TODO (verify before shipping): look up StationAPI's preset for vanilla b1.7.3's
-        // ItemFood(healAmount) so these actually heal the player on eat. Registering as
-        // plain items for now so the project compiles and registration can be confirmed
-        // end-to-end first.
-        radish = new TemplateItem(NAMESPACE.id("radish"))
+        // healAmount, isMeat — tune these however you like, they're not load-bearing on anything else
+        radish = new RadishFoodItem(NAMESPACE.id("radish"), 2, false)
                 .setTranslationKey(NAMESPACE, "radish");
 
-        cookedRadish = new TemplateItem(NAMESPACE.id("cooked_radish"))
+        cookedRadish = new RadishFoodItem(NAMESPACE.id("cooked_radish"), 5, false)
                 .setTranslationKey(NAMESPACE, "cooked_radish");
 
+        // Not edible, stays a plain item
         radishLeaf = new TemplateItem(NAMESPACE.id("radish_leaf"))
                 .setTranslationKey(NAMESPACE, "radish_leaf");
     }

@@ -2,3 +2,5 @@
 item.@.radish.name = "Radish"
 item.@.radish_leaf.name = "Radish Leaf"
 item.@.cooked_radish.name = "Cooked Radish"
+tile.@.radish_block.name = "Radish Block"
+
