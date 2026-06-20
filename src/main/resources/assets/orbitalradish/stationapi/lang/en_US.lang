@@ -1,4 +1,4 @@
 # @ is a shorthand for the current mod id, which is orbitalradish. E.g: tile.@.redclay.name
-tile.@.radish.name = "Radish"
-tile.@.radish_leaf.name = "Radish Leaf"
-tile.@.cooked_radish.name = "Cooked Radish"
+item.@.radish.name = "Radish"
+item.@.radish_leaf.name = "Radish Leaf"
+item.@.cooked_radish.name = "Cooked Radish"
