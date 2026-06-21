@@ -7,30 +7,34 @@ import net.modificationstation.stationapi.api.event.registry.BlockRegistryEvent;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.template.block.TemplateBlock;
 import net.modificationstation.stationapi.api.util.Namespace;
+import orbital.orbitalradish.block.RadishStairsBlock;
 
-/**
- * Babric / StationAPI port of OrbitalRadish block registration.
- *
- * Starting with just a basic static "radish block" (decorative/storage block, like a
- * pumpkin or hay bale). The crop block is NOT here yet — growable crops need growth
- * stages + random tick scheduling, which is a separate, bigger piece of work.
- *
- * Confidence note: the package paths below (template.block.TemplateBlock,
- * event.registry.BlockRegistryEvent) are inferred by direct parallel with the verified
- * Item equivalents (template.item.TemplateItem, event.registry.ItemRegistryEvent), not
- * independently fetched from source like those were. If this doesn't compile, paste me
- * the error — it'll point at exactly which one is off.
- */
 public class BlockListener {
 
     @Entrypoint.Namespace
     public static Namespace NAMESPACE;
 
     public static Block radishBlock;
+    public static Block radishBricks;
+    public static Block radishBrickStairs;
 
     @EventListener
     public void registerBlocks(BlockRegistryEvent event) {
+        // Dirt-tier: soft, fast to dig, no tool required (matches vanilla DIRT: setHardness(0.5F))
         radishBlock = new TemplateBlock(NAMESPACE.id("radish_block"), Material.WOOD)
+                .setHardness(0.5F)
                 .setTranslationKey(NAMESPACE, "radish_block");
+
+        // Stone-tier (no "Stone Bricks" block exists yet in b1.7.3 to copy directly,
+        // matched against Cobblestone/Bricks instead, which share the same values)
+        radishBricks = new TemplateBlock(NAMESPACE.id("radish_bricks"), Material.STONE)
+                .setHardness(2.0F)
+                .setResistance(10.0F)
+                .setTranslationKey(NAMESPACE, "radish_bricks");
+
+        // Stairs inherit hardness/resistance from the base block automatically (see
+        // RadishStairsBlock's javadoc for why we're confident about that).
+        radishBrickStairs = new RadishStairsBlock(NAMESPACE.id("radish_brick_stairs"), radishBricks)
+                .setTranslationKey(NAMESPACE, "radish_brick_stairs");
     }
 }
