@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/slab",
+  "parent": "block/slab",
   "textures": {
     "bottom": "orbitalradish:block/radish_bricks",
     "top": "orbitalradish:block/radish_bricks",
