@@ -7,6 +7,7 @@ import net.modificationstation.stationapi.api.event.registry.BlockRegistryEvent;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.template.block.TemplateBlock;
 import net.modificationstation.stationapi.api.util.Namespace;
+import orbital.orbitalradish.block.RadishCropBlock;
 import orbital.orbitalradish.block.RadishSlabBlock;
 import orbital.orbitalradish.block.RadishStairsBlock;
 
@@ -20,6 +21,7 @@ public class BlockListener {
     public static Block radishBrickStairs;
     public static Block radishSlab;
     public static Block radishDoubleSlab;
+    public static Block radishCrop;
 
     @EventListener
     public void registerBlocks(BlockRegistryEvent event) {
@@ -50,5 +52,14 @@ public class BlockListener {
                 .setHardness(2.0F)
                 .setResistance(10.0F)
                 .setTranslationKey(NAMESPACE, "radish_brick_slab");
+
+        // Crop — values mirror vanilla WHEAT exactly (insta-break, grass-family sound,
+        // no stat tracking, ignores its own frequent meta changes from growth ticks).
+        radishCrop = new RadishCropBlock(NAMESPACE.id("radish_crop"), 0)
+                .setHardness(0.0F)
+                .setSoundGroup(Block.DIRT_SOUND_GROUP)
+                .disableTrackingStatistics()
+                .ignoreMetaUpdates()
+                .setTranslationKey(NAMESPACE, "radish_crop");
     }
 }
