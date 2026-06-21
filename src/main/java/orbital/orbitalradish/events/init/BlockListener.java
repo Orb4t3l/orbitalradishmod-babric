@@ -7,6 +7,7 @@ import net.modificationstation.stationapi.api.event.registry.BlockRegistryEvent;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.template.block.TemplateBlock;
 import net.modificationstation.stationapi.api.util.Namespace;
+import orbital.orbitalradish.block.RadishSlabBlock;
 import orbital.orbitalradish.block.RadishStairsBlock;
 
 public class BlockListener {
@@ -17,6 +18,8 @@ public class BlockListener {
     public static Block radishBlock;
     public static Block radishBricks;
     public static Block radishBrickStairs;
+    public static Block radishSlab;
+    public static Block radishDoubleSlab;
 
     @EventListener
     public void registerBlocks(BlockRegistryEvent event) {
@@ -32,9 +35,20 @@ public class BlockListener {
                 .setResistance(10.0F)
                 .setTranslationKey(NAMESPACE, "radish_bricks");
 
-        // Stairs inherit hardness/resistance from the base block automatically (see
-        // RadishStairsBlock's javadoc for why we're confident about that).
+        // Stairs inherit hardness/resistance from the base block automatically.
         radishBrickStairs = new RadishStairsBlock(NAMESPACE.id("radish_brick_stairs"), radishBricks)
                 .setTranslationKey(NAMESPACE, "radish_brick_stairs");
+
+        // Slab pair — both must exist before either is placed in-world, since their
+        // placement-merge logic references each other (see RadishSlabBlock).
+        radishDoubleSlab = new RadishSlabBlock(NAMESPACE.id("radish_brick_double_slab"), true)
+                .setHardness(2.0F)
+                .setResistance(10.0F)
+                .setTranslationKey(NAMESPACE, "radish_brick_double_slab");
+
+        radishSlab = new RadishSlabBlock(NAMESPACE.id("radish_brick_slab"), false)
+                .setHardness(2.0F)
+                .setResistance(10.0F)
+                .setTranslationKey(NAMESPACE, "radish_brick_slab");
     }
 }
