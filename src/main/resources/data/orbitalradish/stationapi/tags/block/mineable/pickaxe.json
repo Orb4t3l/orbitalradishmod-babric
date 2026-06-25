@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "orbitalradish:radish_bricks",
+    "orbitalradish:radish_brick_stairs",
+    "orbitalradish:radish_brick_slab",
+    "orbitalradish:radish_brick_double_slab"
+  ]
+}

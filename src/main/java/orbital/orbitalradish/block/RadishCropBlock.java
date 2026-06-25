@@ -1,9 +1,13 @@
 package orbital.orbitalradish.block;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.CropBlock;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.modificationstation.stationapi.api.block.BlockState;
+import net.modificationstation.stationapi.api.state.StateManager;
+import net.modificationstation.stationapi.api.state.property.IntProperty;
 import net.modificationstation.stationapi.api.template.block.BlockTemplate;
 import net.modificationstation.stationapi.api.util.Identifier;
 import orbital.orbitalradish.events.init.ItemListener;
@@ -11,20 +15,16 @@ import orbital.orbitalradish.events.init.ItemListener;
 import java.util.Random;
 
 /**
- * Radish crop — mirrors vanilla CropBlock's growth (moisture-based random tick, meta 0-7)
- * and harvest behavior exactly, just with radish/radish_seeds substituted for wheat/seeds.
+ * Radish crop with proper StationAPI block state property registration.
  *
- * dropStacks is fully reimplemented rather than calling super.dropStacks(), because
- * CropBlock's own override hardcodes a bonus drop of vanilla Item.SEEDS — calling it would
- * give players vanilla wheat seeds instead of radish seeds. What's below mirrors the same
- * two pieces (Block's base drop-by-id/count logic, then CropBlock's bonus-drop loop) with
- * our own items wired in.
- *
- * Growth-stage texture variation (meta 0-7 showing different sprites) isn't wired up yet —
- * same open question as stairs rotation, both depend on understanding StationAPI's
- * metadata-to-blockstate-property bridge. Renders as one static texture for now.
+ * The AGE IntProperty (0-7) is what makes the blockstate JSON variants
+ * "age=0" through "age=7" actually resolve to models. Without declaring
+ * and appending this property, the blockstate selector can't match any
+ * variant and renders nothing — confirmed from StationAPI wiki.
  */
 public class RadishCropBlock extends CropBlock implements BlockTemplate {
+
+    public static final IntProperty AGE = IntProperty.of("age", 0, 7);
 
     public RadishCropBlock(Identifier identifier, int textureId) {
         this(BlockTemplate.getNextId(), textureId);
@@ -36,28 +36,33 @@ public class RadishCropBlock extends CropBlock implements BlockTemplate {
     }
 
     @Override
+    public void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(AGE);
+        super.appendProperties(builder);
+    }
+
+    @Override
     public void dropStacks(World world, int x, int y, int z, int meta, float luck) {
         if (!world.isRemote) {
-            int count = this.getDroppedItemCount(world.random);
-            for (int i = 0; i < count; ++i) {
-                if (!(world.random.nextFloat() > luck)) {
-                    int droppedId = this.getDroppedItemId(meta, world.random);
-                    if (droppedId > 0) {
-                        this.dropStack(world, x, y, z, new ItemStack(droppedId, 1, this.getDroppedItemMeta(meta)));
-                    }
-                }
-            }
+            // Always drop exactly 1 radish — radish is its own seed
+            this.dropStack(world, x, y, z, new ItemStack(ItemListener.radish, 1, 0));
 
-            // Bonus seed drops, same odds curve as vanilla wheat (higher growth stage = better odds)
-            for (int i = 0; i < 3; ++i) {
-                if (world.random.nextInt(15) <= meta) {
-                    float f = 0.7F;
-                    float fx = world.random.nextFloat() * f + (1.0F - f) * 0.5F;
-                    float fy = world.random.nextFloat() * f + (1.0F - f) * 0.5F;
-                    float fz = world.random.nextFloat() * f + (1.0F - f) * 0.5F;
-                    ItemEntity entity = new ItemEntity(world, (double) ((float) x + fx), (double) ((float) y + fy), (double) ((float) z + fz), new ItemStack(ItemListener.radish));
-                    entity.pickupDelay = 10;
-                    world.spawnEntity(entity);
+            // Bonus radishes only at full growth
+            if (meta == 7) {
+                for (int i = 0; i < 3; ++i) {
+                    if (world.random.nextInt(15) == 0) {
+                        float f = 0.7F;
+                        float fx = world.random.nextFloat() * f + (1.0F - f) * 0.5F;
+                        float fy = world.random.nextFloat() * f + (1.0F - f) * 0.5F;
+                        float fz = world.random.nextFloat() * f + (1.0F - f) * 0.5F;
+                        ItemEntity entity = new ItemEntity(world,
+                                (double)((float)x + fx),
+                                (double)((float)y + fy),
+                                (double)((float)z + fz),
+                                new ItemStack(ItemListener.radish));
+                        entity.pickupDelay = 10;
+                        world.spawnEntity(entity);
+                    }
                 }
             }
         }
@@ -65,11 +70,11 @@ public class RadishCropBlock extends CropBlock implements BlockTemplate {
 
     @Override
     public int getDroppedItemId(int blockMeta, Random random) {
-        return blockMeta == 7 ? ItemListener.radish.id : -1;
+        return -1; // handled entirely in dropStacks above
     }
 
     @Override
     public int getDroppedItemCount(Random random) {
-        return 1;
+        return 0;
     }
 }

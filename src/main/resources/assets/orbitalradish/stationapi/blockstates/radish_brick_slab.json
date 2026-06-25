@@ -1,13 +1,5 @@
 {
   "variants": {
-    "type=bottom": {
-      "model": "orbitalradish:block/radish_slab"
-    },
-    "type=double": {
-      "model": "orbitalradish:block/radish_bricks"
-    },
-    "type=top": {
-      "model": "orbitalradish:block/radish_slab_top"
-    }
+    "": { "model": "orbitalradish:block/radish_brick_slab" }
   }
 }
