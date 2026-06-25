@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "orbitalradish:block/radish_bricks"
-  }
+  "parent": "orbitalradish:block/radish_brick_double_slab"
 }
