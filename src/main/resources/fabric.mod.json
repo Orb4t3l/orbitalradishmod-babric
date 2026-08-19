@@ -21,9 +21,11 @@
     "stationapi:event_bus": [
       "orbital.orbitalradish.events.init.InitListener",
       "orbital.orbitalradish.events.init.ItemListener",
-      "orbital.orbitalradish.events.init.BlockListener"
+      "orbital.orbitalradish.events.init.BlockListener",
+      "orbital.orbitalradish.events.init.EntityListener"
     ],
     "stationapi:event_bus_client": [
+      "orbital.orbitalradish.events.init.EntityRendererListener"
     ],
     "stationapi:event_bus_server": [
     ]

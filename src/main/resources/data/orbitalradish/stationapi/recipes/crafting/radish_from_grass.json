@@ -1,0 +1,10 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    "minecraft:grass_block"
+  ],
+  "result": {
+    "item": "orbitalradish:radish",
+    "count": 1
+  }
+}
