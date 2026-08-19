@@ -8,29 +8,26 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.block.BlockState;
 import net.modificationstation.stationapi.api.state.StateManager;
-import net.modificationstation.stationapi.api.state.property.EnumProperty;
+import net.modificationstation.stationapi.api.state.property.IntProperty;
 import net.modificationstation.stationapi.api.template.block.BlockTemplate;
 import net.modificationstation.stationapi.api.util.Identifier;
 import orbital.orbitalradish.events.init.BlockListener;
 
 import java.util.Random;
 
-
 public class RadishSlabBlock extends Block implements BlockTemplate {
+
+    public static final IntProperty TYPE = IntProperty.of("type", 0, 2);
+
+    public static final int TYPE_BOTTOM = 0;
+    public static final int TYPE_TOP = 1;
+    public static final int TYPE_DOUBLE = 2;
 
     private final boolean isDouble;
 
     public RadishSlabBlock(Identifier identifier, boolean isDouble) {
         this(BlockTemplate.getNextId(), isDouble);
         BlockTemplate.onConstructor(this, identifier);
-    }
-
-
-    public static final EnumProperty<SlabType> TYPE = EnumProperty.of("type", SlabType.class);
-
-    @Override
-    public void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(TYPE);
     }
 
     public RadishSlabBlock(int id, boolean isDouble) {
@@ -40,6 +37,11 @@ public class RadishSlabBlock extends Block implements BlockTemplate {
             this.setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
         }
         this.setOpacity(255);
+    }
+
+    @Override
+    public void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(TYPE);
     }
 
     @Override
@@ -57,6 +59,7 @@ public class RadishSlabBlock extends Block implements BlockTemplate {
         super.onPlaced(world, x, y, z);
 
         if (this.isDouble) {
+            world.setBlockMeta(x, y, z, TYPE_DOUBLE);
             return;
         }
 
@@ -69,7 +72,7 @@ public class RadishSlabBlock extends Block implements BlockTemplate {
 
         if (hereMeta == belowMeta && belowId == singleSlab.id) {
             world.setBlock(x, y, z, 0);
-            world.setBlock(x, y - 1, z, doubleSlab.id, belowMeta);
+            world.setBlock(x, y - 1, z, doubleSlab.id, TYPE_DOUBLE);
         }
     }
 
