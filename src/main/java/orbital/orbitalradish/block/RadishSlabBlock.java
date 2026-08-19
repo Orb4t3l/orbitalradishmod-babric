@@ -42,6 +42,7 @@ public class RadishSlabBlock extends Block implements BlockTemplate {
     @Override
     public void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(TYPE);
+        super.appendProperties(builder);
     }
 
     @Override
