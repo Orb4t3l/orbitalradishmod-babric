@@ -6,26 +6,16 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.modificationstation.stationapi.api.block.BlockState;
+import net.modificationstation.stationapi.api.state.StateManager;
+import net.modificationstation.stationapi.api.state.property.EnumProperty;
 import net.modificationstation.stationapi.api.template.block.BlockTemplate;
 import net.modificationstation.stationapi.api.util.Identifier;
 import orbital.orbitalradish.events.init.BlockListener;
 
 import java.util.Random;
 
-/**
- * Custom slab pair for radish bricks.
- *
- * Vanilla's SlabBlock (confirmed from decompiled source) can't be reused for a new
- * material as-is — it hardcodes a 4-texture switch AND hardcodes its placement-merge logic
- * to check specifically against the singleton Block.SLAB / Block.DOUBLE_SLAB instances. This
- * mirrors that exact algorithm, but checks against BlockListener.radishSlab /
- * radishDoubleSlab instead — same trick vanilla uses with its own static fields, since
- * onPlaced only ever runs later at runtime, long after both are registered.
- *
- * No texture-meta switch needed since we only have one slab "flavor" (unlike vanilla's
- * stone/sandstone/wood/cobble combo) — texturing goes through the model/blockstate JSON,
- * same as our other blocks.
- */
+
 public class RadishSlabBlock extends Block implements BlockTemplate {
 
     private final boolean isDouble;
@@ -33,6 +23,14 @@ public class RadishSlabBlock extends Block implements BlockTemplate {
     public RadishSlabBlock(Identifier identifier, boolean isDouble) {
         this(BlockTemplate.getNextId(), isDouble);
         BlockTemplate.onConstructor(this, identifier);
+    }
+
+
+    public static final EnumProperty<SlabType> TYPE = EnumProperty.of("type", SlabType.class);
+
+    @Override
+    public void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(TYPE);
     }
 
     public RadishSlabBlock(int id, boolean isDouble) {
