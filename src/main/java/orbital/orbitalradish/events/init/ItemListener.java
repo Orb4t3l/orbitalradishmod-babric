@@ -7,7 +7,7 @@ import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.template.item.TemplateItem;
 import net.modificationstation.stationapi.api.util.Namespace;
 import orbital.orbitalradish.item.RadishFoodItem;
-import orbital.orbitalradish.events.init.BlockListener;
+import orbital.orbitalradish.item.RadishStickItem;
 
 public class ItemListener {
 
@@ -17,10 +17,10 @@ public class ItemListener {
     public static Item radish;
     public static Item cookedRadish;
     public static Item radishLeaf;
+    public static Item radishStick;
 
     @EventListener
     public void registerItems(ItemRegistryEvent event) {
-        // healAmount, isMeat, plantable
         radish = new RadishFoodItem(NAMESPACE.id("radish"), 2, false, true)
                 .setTranslationKey(NAMESPACE, "radish");
 
@@ -30,11 +30,15 @@ public class ItemListener {
         radishLeaf = new TemplateItem(NAMESPACE.id("radish_leaf"))
                 .setTranslationKey(NAMESPACE, "radish_leaf");
 
-        // Block items
+        radishStick = new RadishStickItem(NAMESPACE.id("radish_stick"))
+                .setTranslationKey(NAMESPACE, "radish_stick");
+
         BlockListener.radishBlock.asItem();
         BlockListener.radishBricks.asItem();
         BlockListener.radishBrickStairs.asItem();
         BlockListener.radishSlab.asItem();
         BlockListener.radishDoubleSlab.asItem();
+        BlockListener.doubleCompressedRadishBlock.asItem();
+        BlockListener.tripleCompressedRadishBlock.asItem();
     }
 }
