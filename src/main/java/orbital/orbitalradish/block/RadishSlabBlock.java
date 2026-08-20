@@ -7,6 +7,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.block.BlockState;
+import net.modificationstation.stationapi.api.item.ItemPlacementContext;
 import net.modificationstation.stationapi.api.state.StateManager;
 import net.modificationstation.stationapi.api.state.property.IntProperty;
 import net.modificationstation.stationapi.api.template.block.BlockTemplate;
@@ -46,6 +47,17 @@ public class RadishSlabBlock extends Block implements BlockTemplate {
     }
 
     @Override
+    public BlockState getPlacementState(ItemPlacementContext context) {
+        if (this.isDouble) {
+            return this.getDefaultState().with(TYPE, TYPE_DOUBLE);
+        }
+        if (context.getHitPos().y > 0.5F) {
+            return this.getDefaultState().with(TYPE, TYPE_TOP);
+        }
+        return this.getDefaultState().with(TYPE, TYPE_BOTTOM);
+    }
+
+    @Override
     public boolean isOpaque() {
         return this.isDouble;
     }
@@ -60,7 +72,6 @@ public class RadishSlabBlock extends Block implements BlockTemplate {
         super.onPlaced(world, x, y, z);
 
         if (this.isDouble) {
-            world.setBlockMeta(x, y, z, TYPE_DOUBLE);
             return;
         }
 
@@ -73,7 +84,8 @@ public class RadishSlabBlock extends Block implements BlockTemplate {
 
         if (hereMeta == belowMeta && belowId == singleSlab.id) {
             world.setBlock(x, y, z, 0);
-            world.setBlock(x, y - 1, z, doubleSlab.id, TYPE_DOUBLE);
+            BlockState doubleState = doubleSlab.getDefaultState().with(TYPE, TYPE_DOUBLE);
+            world.setBlockState(x, y - 1, z, doubleState, TYPE_DOUBLE);
         }
     }
 

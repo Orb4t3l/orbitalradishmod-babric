@@ -33,6 +33,16 @@ public class RadishCropBlock extends CropBlock implements BlockTemplate {
         super.appendProperties(builder);
     }
 
+    private void growTo(World world, int x, int y, int z, int newAge) {
+        BlockState newState = this.getDefaultState().with(AGE, newAge);
+        world.setBlockState(x, y, z, newState, newAge);
+    }
+
+    @Override
+    public void applyFullGrowth(World world, int x, int y, int z) {
+        this.growTo(world, x, y, z, 7);
+    }
+
     @Override
     public void onTick(World world, int x, int y, int z, Random random) {
         if (world.getLightLevel(x, y + 1, z) >= 9) {
@@ -40,8 +50,7 @@ public class RadishCropBlock extends CropBlock implements BlockTemplate {
             if (meta < 7) {
                 float moisture = 1.0F;
                 if (random.nextInt((int) (100.0F / moisture)) == 0) {
-                    ++meta;
-                    world.setBlock(x, y, z, this.id, meta);
+                    this.growTo(world, x, y, z, meta + 1);
                 }
             }
         }
