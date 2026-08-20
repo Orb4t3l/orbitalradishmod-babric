@@ -6,10 +6,10 @@ import net.minecraft.block.material.Material;
 import net.modificationstation.stationapi.api.event.registry.BlockRegistryEvent;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.template.block.TemplateBlock;
-import net.modificationstation.stationapi.api.template.block.TemplateSlabBlock;
-import net.modificationstation.stationapi.api.template.block.TemplateStairsBlock;
 import net.modificationstation.stationapi.api.util.Namespace;
 import orbital.orbitalradish.block.RadishCropBlock;
+import orbital.orbitalradish.block.RadishSlabBlock;
+import orbital.orbitalradish.block.RadishStairsBlock;
 
 public class BlockListener {
 
@@ -36,15 +36,15 @@ public class BlockListener {
                 .setResistance(10.0F)
                 .setTranslationKey(NAMESPACE, "radish_bricks");
 
-        radishBrickStairs = new TemplateStairsBlock(NAMESPACE.id("radish_brick_stairs"), radishBricks)
+        radishBrickStairs = new RadishStairsBlock(NAMESPACE.id("radish_brick_stairs"), radishBricks)
                 .setTranslationKey(NAMESPACE, "radish_brick_stairs");
 
-        radishDoubleSlab = new TemplateSlabBlock(NAMESPACE.id("radish_brick_double_slab"), true)
+        radishDoubleSlab = new RadishSlabBlock(NAMESPACE.id("radish_brick_double_slab"), true)
                 .setHardness(2.0F)
                 .setResistance(10.0F)
                 .setTranslationKey(NAMESPACE, "radish_brick_double_slab");
 
-        radishSlab = new TemplateSlabBlock(NAMESPACE.id("radish_brick_slab"), false)
+        radishSlab = new RadishSlabBlock(NAMESPACE.id("radish_brick_slab"), false)
                 .setHardness(2.0F)
                 .setResistance(10.0F)
                 .setTranslationKey(NAMESPACE, "radish_brick_slab");

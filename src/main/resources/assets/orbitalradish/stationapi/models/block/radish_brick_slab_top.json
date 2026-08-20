@@ -1,5 +1,6 @@
 {
   "textures": {
+    "all": "orbitalradish:block/radish_bricks",
     "particle": "orbitalradish:block/radish_bricks"
   },
   "elements": [
@@ -7,12 +8,12 @@
       "from": [0, 8, 0],
       "to": [16, 16, 16],
       "faces": {
-        "down":  { "texture": "orbitalradish:block/radish_bricks" },
-        "up":    { "texture": "orbitalradish:block/radish_bricks" },
-        "north": { "texture": "orbitalradish:block/radish_bricks" },
-        "south": { "texture": "orbitalradish:block/radish_bricks" },
-        "west":  { "texture": "orbitalradish:block/radish_bricks" },
-        "east":  { "texture": "orbitalradish:block/radish_bricks" }
+        "down":  { "texture": "#all" },
+        "up":    { "texture": "#all" },
+        "north": { "texture": "#all" },
+        "south": { "texture": "#all" },
+        "west":  { "texture": "#all" },
+        "east":  { "texture": "#all" }
       }
     }
   ]
