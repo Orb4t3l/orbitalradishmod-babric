@@ -48,11 +48,7 @@ public class RadishStairsBlock extends Block implements BlockTemplate {
         if (placer == null) {
             facing = 0;
         } else {
-            int dir = MathHelper.floor((double) (placer.yaw * 4.0F / 360.0F) + 0.5D) & 3;
-            if (dir == 0) facing = 2;
-            else if (dir == 1) facing = 1;
-            else if (dir == 2) facing = 3;
-            else facing = 0;
+            facing = MathHelper.floor((double) (placer.yaw * 4.0F / 360.0F) + 0.5D) & 3;
         }
         return this.getDefaultState().with(FACING, facing);
     }

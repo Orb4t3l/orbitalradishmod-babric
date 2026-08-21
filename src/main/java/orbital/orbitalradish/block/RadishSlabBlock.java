@@ -38,6 +38,8 @@ public class RadishSlabBlock extends Block implements BlockTemplate {
             this.setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
         }
         this.setOpacity(255);
+        this.setHardness(2.0F);
+        this.setResistance(10.0F);
     }
 
     @Override
@@ -52,9 +54,9 @@ public class RadishSlabBlock extends Block implements BlockTemplate {
             return this.getDefaultState().with(TYPE, TYPE_DOUBLE);
         }
         if (context.getHitPos().y > 0.5F) {
-            return this.getDefaultState().with(TYPE, TYPE_TOP);
+            return this.getDefaultState().with(TYPE, TYPE_BOTTOM);
         }
-        return this.getDefaultState().with(TYPE, TYPE_BOTTOM);
+        return this.getDefaultState().with(TYPE, TYPE_TOP);
     }
 
     @Override
