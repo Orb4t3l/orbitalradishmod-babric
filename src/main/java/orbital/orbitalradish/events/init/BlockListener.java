@@ -37,6 +37,8 @@ public class BlockListener {
                 .setTranslationKey(NAMESPACE, "radish_bricks");
 
         radishBrickStairs = new RadishStairsBlock(NAMESPACE.id("radish_brick_stairs"), radishBricks)
+                .setHardness(2.0F)
+                .setResistance(10.0F / 3.0F)
                 .setTranslationKey(NAMESPACE, "radish_brick_stairs");
 
         radishDoubleSlab = new RadishSlabBlock(NAMESPACE.id("radish_brick_double_slab"), true)
