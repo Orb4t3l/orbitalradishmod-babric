@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/crop",
+  "parent": "minecraft:block/cross",
   "textures": {
-    "crop": "orbitalradish:block/radish_stage1"
+    "cross": "orbitalradish:block/radish_stage1"
   }
 }
