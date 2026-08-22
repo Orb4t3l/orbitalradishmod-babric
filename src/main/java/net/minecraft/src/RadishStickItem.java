@@ -1,4 +1,4 @@
-package orbital.orbitalradish.item;
+package net.minecraft.src;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BowItem;
@@ -7,7 +7,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.template.item.ItemTemplate;
 import net.modificationstation.stationapi.api.util.Identifier;
-import orbital.orbitalradish.entity.RadishStickEntity;
 
 public class RadishStickItem extends BowItem implements ItemTemplate {
 

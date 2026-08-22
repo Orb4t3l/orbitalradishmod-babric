@@ -1,7 +1,6 @@
-package orbital.orbitalradish.block;
+package net.minecraft.src;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;

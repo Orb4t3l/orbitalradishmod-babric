@@ -1,4 +1,4 @@
-package orbital.orbitalradish.events.init;
+package net.minecraft.src;
 
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.Block;
@@ -7,9 +7,6 @@ import net.modificationstation.stationapi.api.event.registry.BlockRegistryEvent;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.template.block.TemplateBlock;
 import net.modificationstation.stationapi.api.util.Namespace;
-import orbital.orbitalradish.block.RadishCropBlock;
-import orbital.orbitalradish.block.RadishSlabBlock;
-import orbital.orbitalradish.block.RadishStairsBlock;
 
 public class BlockListener {
 

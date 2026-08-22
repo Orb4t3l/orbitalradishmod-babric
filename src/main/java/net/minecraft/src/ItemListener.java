@@ -1,4 +1,4 @@
-package orbital.orbitalradish.events.init;
+package net.minecraft.src;
 
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.item.Item;
@@ -6,9 +6,6 @@ import net.modificationstation.stationapi.api.event.registry.ItemRegistryEvent;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.template.item.TemplateItem;
 import net.modificationstation.stationapi.api.util.Namespace;
-import orbital.orbitalradish.item.RadishFoodItem;
-import orbital.orbitalradish.item.RadishStewItem;
-import orbital.orbitalradish.item.RadishStickItem;
 
 public class ItemListener {
 

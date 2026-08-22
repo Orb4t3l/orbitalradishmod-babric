@@ -1,4 +1,4 @@
-package orbital.orbitalradish.entity;
+package net.minecraft.src;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

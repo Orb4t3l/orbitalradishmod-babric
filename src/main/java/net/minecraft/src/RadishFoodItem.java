@@ -1,4 +1,4 @@
-package orbital.orbitalradish.item;
+package net.minecraft.src;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
@@ -7,7 +7,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.template.item.ItemTemplate;
 import net.modificationstation.stationapi.api.util.Identifier;
-import orbital.orbitalradish.events.init.BlockListener;
 
 /**
  * Same wrapping trick as StationAPI's own TemplateItem — applied to vanilla's FoodItem.

@@ -1,10 +1,9 @@
-package orbital.orbitalradish.events.init;
+package net.minecraft.src;
 
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.modificationstation.stationapi.api.event.entity.EntityRegisterEvent;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.util.Namespace;
-import orbital.orbitalradish.entity.RadishStickEntity;
 
 public class EntityListener {
 
