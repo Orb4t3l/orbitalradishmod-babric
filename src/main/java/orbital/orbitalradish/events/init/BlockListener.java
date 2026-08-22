@@ -58,12 +58,12 @@ public class BlockListener {
                 .ignoreMetaUpdates()
                 .setTranslationKey(NAMESPACE, "radish_crop");
 
-        doubleCompressedRadishBlock = new TemplateBlock(NAMESPACE.id("double_compressed_radish_block"), Material.STONE)
+        doubleCompressedRadishBlock = new TemplateBlock(NAMESPACE.id("double_compressed_radish_block"), Material.WOOD)
                 .setHardness(4.0F)
                 .setResistance(20.0F)
                 .setTranslationKey(NAMESPACE, "double_compressed_radish_block");
 
-        tripleCompressedRadishBlock = new TemplateBlock(NAMESPACE.id("triple_compressed_radish_block"), Material.STONE)
+        tripleCompressedRadishBlock = new TemplateBlock(NAMESPACE.id("triple_compressed_radish_block"), Material.WOOD)
                 .setHardness(6.0F)
                 .setResistance(30.0F)
                 .setTranslationKey(NAMESPACE, "triple_compressed_radish_block");

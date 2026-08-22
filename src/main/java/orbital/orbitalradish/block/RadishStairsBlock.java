@@ -64,7 +64,7 @@ public class RadishStairsBlock extends Block implements BlockTemplate {
     }
 
     public void addIntersectingBoundingBox(World world, int x, int y, int z, Box box, ArrayList boxes) {
-        int facing = world.getBlockMeta(x, y, z);
+        int facing = world.getBlockState(x, y, z).get(FACING);
         if (facing == 0) {
             this.setBoundingBox(0.0F, 0.0F, 0.5F, 1.0F, 0.5F, 1.0F);
             super.addIntersectingBoundingBox(world, x, y, z, box, boxes);
