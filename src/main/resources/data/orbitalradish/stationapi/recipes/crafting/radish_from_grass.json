@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    { "item": "minecraft:grass_block" }
+    { "item": "minecraft:wheat_seeds" }
   ],
   "result": {
     "item": "orbitalradish:radish",
