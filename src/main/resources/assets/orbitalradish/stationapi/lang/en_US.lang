@@ -1,6 +1,13 @@
-# @ is a shorthand for the current mod id, which is orbitalradish. E.g: tile.@.redclay.name
-item.@.radish.name = "Radish"
-item.@.radish_leaf.name = "Radish Leaf"
-item.@.cooked_radish.name = "Cooked Radish"
-tile.@.radish_block.name = "Radish Block"
-
+item.@.radish.name=Radish
+item.@.cooked_radish.name=Cooked Radish
+item.@.radish_leaf.name=Radish Leaf
+item.@.radish_stick.name=Radish Stick
+item.@.radish_stew.name=Radish Stew
+tile.@.radish_block.name=Radish Block
+tile.@.radish_bricks.name=Radish Bricks
+tile.@.radish_brick_stairs.name=Radish Brick Stairs
+tile.@.radish_brick_slab.name=Radish Brick Slab
+tile.@.radish_brick_double_slab.name=Radish Brick Double Slab
+tile.@.radish_crop.name=Radish Crop
+tile.@.double_compressed_radish_block.name=Double Compressed Radish Block
+tile.@.triple_compressed_radish_block.name=Triple Compressed Radish Block
