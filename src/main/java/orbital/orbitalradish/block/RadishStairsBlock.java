@@ -66,14 +66,14 @@ public class RadishStairsBlock extends Block implements BlockTemplate {
     public void addIntersectingBoundingBox(World world, int x, int y, int z, Box box, ArrayList boxes) {
         int facing = world.getBlockMeta(x, y, z);
         if (facing == 0) {
+            this.setBoundingBox(0.0F, 0.0F, 0.5F, 1.0F, 0.5F, 1.0F);
+            super.addIntersectingBoundingBox(world, x, y, z, box, boxes);
+            this.setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 0.5F);
+            super.addIntersectingBoundingBox(world, x, y, z, box, boxes);
+        } else if (facing == 1) {
             this.setBoundingBox(0.0F, 0.0F, 0.0F, 0.5F, 0.5F, 1.0F);
             super.addIntersectingBoundingBox(world, x, y, z, box, boxes);
             this.setBoundingBox(0.5F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-            super.addIntersectingBoundingBox(world, x, y, z, box, boxes);
-        } else if (facing == 1) {
-            this.setBoundingBox(0.0F, 0.0F, 0.0F, 0.5F, 1.0F, 1.0F);
-            super.addIntersectingBoundingBox(world, x, y, z, box, boxes);
-            this.setBoundingBox(0.5F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
             super.addIntersectingBoundingBox(world, x, y, z, box, boxes);
         } else if (facing == 2) {
             this.setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 0.5F);
@@ -81,9 +81,9 @@ public class RadishStairsBlock extends Block implements BlockTemplate {
             this.setBoundingBox(0.0F, 0.0F, 0.5F, 1.0F, 1.0F, 1.0F);
             super.addIntersectingBoundingBox(world, x, y, z, box, boxes);
         } else if (facing == 3) {
-            this.setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 0.5F);
+            this.setBoundingBox(0.5F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
             super.addIntersectingBoundingBox(world, x, y, z, box, boxes);
-            this.setBoundingBox(0.0F, 0.0F, 0.5F, 1.0F, 0.5F, 1.0F);
+            this.setBoundingBox(0.0F, 0.0F, 0.0F, 0.5F, 1.0F, 1.0F);
             super.addIntersectingBoundingBox(world, x, y, z, box, boxes);
         }
         this.setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);

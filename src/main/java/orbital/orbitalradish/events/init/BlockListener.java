@@ -31,7 +31,7 @@ public class BlockListener {
                 .setHardness(0.5F)
                 .setTranslationKey(NAMESPACE, "radish_block");
 
-        radishBricks = new TemplateBlock(NAMESPACE.id("radish_bricks"), Material.STONE)
+        radishBricks = new TemplateBlock(NAMESPACE.id("radish_bricks"), Material.WOOD)
                 .setHardness(2.0F)
                 .setResistance(10.0F)
                 .setTranslationKey(NAMESPACE, "radish_bricks");

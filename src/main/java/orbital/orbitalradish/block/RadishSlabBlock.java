@@ -32,7 +32,7 @@ public class RadishSlabBlock extends Block implements BlockTemplate {
     }
 
     public RadishSlabBlock(int id, boolean isDouble) {
-        super(id, Material.STONE);
+        super(id, Material.WOOD);
         this.isDouble = isDouble;
         if (!isDouble) {
             this.setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
