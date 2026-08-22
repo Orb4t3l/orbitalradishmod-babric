@@ -14,7 +14,6 @@ import net.modificationstation.stationapi.api.template.block.BlockTemplate;
 import net.modificationstation.stationapi.api.util.Identifier;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class RadishStairsBlock extends Block implements BlockTemplate {
 
@@ -87,15 +86,5 @@ public class RadishStairsBlock extends Block implements BlockTemplate {
             super.addIntersectingBoundingBox(world, x, y, z, box, boxes);
         }
         this.setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-    }
-
-    @Override
-    public int getDroppedItemId(int blockMeta, Random random) {
-        return this.id;
-    }
-
-    @Override
-    public int getDroppedItemCount(Random random) {
-        return 1;
     }
 }

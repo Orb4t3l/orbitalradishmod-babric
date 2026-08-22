@@ -14,8 +14,6 @@ import net.modificationstation.stationapi.api.template.block.BlockTemplate;
 import net.modificationstation.stationapi.api.util.Identifier;
 import orbital.orbitalradish.events.init.BlockListener;
 
-import java.util.Random;
-
 public class RadishSlabBlock extends Block implements BlockTemplate {
 
     public static final IntProperty TYPE = IntProperty.of("type", 0, 2);
@@ -89,16 +87,6 @@ public class RadishSlabBlock extends Block implements BlockTemplate {
             BlockState doubleState = doubleSlab.getDefaultState().with(TYPE, TYPE_DOUBLE);
             world.setBlockState(x, y - 1, z, doubleState, TYPE_DOUBLE);
         }
-    }
-
-    @Override
-    public int getDroppedItemId(int blockMeta, Random random) {
-        return BlockListener.radishSlab.id;
-    }
-
-    @Override
-    public int getDroppedItemCount(Random random) {
-        return this.isDouble ? 2 : 1;
     }
 
     @Override
