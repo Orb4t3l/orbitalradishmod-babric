@@ -1,4 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": { "all": "orbitalradish:block/triple_compressed_radish_block" }
-}

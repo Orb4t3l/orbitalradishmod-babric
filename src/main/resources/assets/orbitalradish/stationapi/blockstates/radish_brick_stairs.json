@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=0": { "model": "orbitalradish:block/radish_brick_stairs" },
-    "facing=1": { "model": "orbitalradish:block/radish_brick_stairs", "y": 90 },
-    "facing=2": { "model": "orbitalradish:block/radish_brick_stairs", "y": 180 },
-    "facing=3": { "model": "orbitalradish:block/radish_brick_stairs", "y": 270 }
-  }
-}
