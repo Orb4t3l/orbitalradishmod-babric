@@ -5,9 +5,6 @@ plugins {
 version = project.properties['mod_version']
 base.archivesName = project.properties['archives_base_name']
 
-// b1.7.3-era code was compiled against Java 6, but any modern JDK
-// running in a compatible source/target mode will produce class files
-// the old JVM-era launch wrappers can still load. 8 is a safe, easy choice.
 java {
 	sourceCompatibility = JavaVersion.VERSION_1_8
 	targetCompatibility = JavaVersion.VERSION_1_8
@@ -15,16 +12,13 @@ java {
 
 repositories {
 	mavenCentral()
-	// everything else comes from libs/ as flat file jars, no remote repo needed
 	flatDir {
 		dirs 'libs'
 	}
 }
 
 dependencies {
-	// deobfuscated (MCP-mapped) minecraft client jar for b1.7.3 — you supply this
 	compileOnly name: 'minecraft-b1.7.3'
-	// Risugami's ModLoader for b1.7.3, patched into / alongside the client jar — you supply this
 	compileOnly name: 'modloader-b1.7.3'
 }
 
@@ -39,11 +33,6 @@ sourceSets {
 	}
 }
 
-// Builds a jar containing ONLY your mod's classes + resources.
-// This is what you drop into .minecraft/mods (pre-Forge modding: literally
-// unzip this jar's contents into the minecraft.jar itself, class files and
-// resources merged directly in, OR let ModLoader's classloader pick it up
-// if you're using a ModLoader build that supports loose mod jars).
 jar {
 	archiveClassifier.set('')
 	from(sourceSets.main.output)
